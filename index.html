@@ -989,7 +989,7 @@ function applyTheme(){
   Object.keys(chartInstances).forEach(k=>{if(chartInstances[k]&&chartInstances[k].update)chartInstances[k].update()});
 }
 function toggleTheme(){const c=DM.getSetting('theme','dark');DM.setSetting('theme',c==='dark'?'light':'dark');applyTheme();if(DM.getSetting('wallpaper','')){extractAndApplyTheme(DM.getSetting('wallpaper',''),DM.getSetting('theme','dark')==='light')}}
-function setThemeMode(m){DM.setSetting('theme',m);applyTheme();showToast('Switched to '+m+' mode','info');if(DM.getSetting('wallpaper','')){extractAndApplyTheme(DM.getSetting('wallpaper',''),m==='light')}}
+function setThemeMode(m){DM.setSetting('theme',m);applyTheme();if(DM.getSetting('wallpaper','')){extractAndApplyTheme(DM.getSetting('wallpaper',''),m==='light')}}
 function setAccent(color,el){DM.setSetting('accent',color);applyTheme();document.querySelectorAll('.color-option').forEach(c=>c.classList.remove('active'));if(el)el.classList.add('active')}
 const COLOR_THEMES={
   ocean:{name:'Ocean Blue',dark:{bg:'#B8C6FF',bg2:'#9AACFF',tx:'#1a1a2e',tx2:'#3a3a5c',txm:'#6a6a8e',glass:'rgba(255,255,255,.3)',glassB:'rgba(255,255,255,.45)',glassSh:'rgba(184,198,255,.3)',glassShL:'rgba(184,198,255,.4)',nav:'rgba(255,255,255,.25)',ph:228,ps:'100%',pl:'83%'},light:{bg:'#FFE6F8',bg2:'#FFD6EE',tx:'#1a1a2e',tx2:'#4a3a5c',txm:'#8a7a9e',glass:'rgba(255,255,255,.45)',glassB:'rgba(255,200,230,.5)',glassSh:'rgba(255,230,248,.3)',glassShL:'rgba(255,230,248,.4)',nav:'rgba(255,255,255,.6)',ph:330,ps:'100%',pl:'95%'}},
