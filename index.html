@@ -91,7 +91,6 @@ body.light #wallpaper-layer::after{background:linear-gradient(135deg,hsl(var(--p
 .kpi-card .kpi-chart{height:40px;margin-top:12px;opacity:.5}
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
 .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-@media(max-width:1024px){.grid-2,.grid-3{grid-template-columns:1fr}}
 .chart-container{padding:24px;position:relative}
 .chart-container h3{font-size:15px;font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:8px}
 .chart-container canvas{max-height:300px;max-width:100%}
@@ -122,6 +121,12 @@ body.light #wallpaper-layer::after{background:linear-gradient(135deg,hsl(var(--p
 .search-bar input,.search-bar select{padding:10px 14px;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--radius-xs);color:var(--text-primary);font-family:var(--font);font-size:13px}
 .search-bar input{flex:1;min-width:200px}
 .search-bar input:focus,.search-bar select:focus{outline:none;border-color:var(--accent)}
+@media(max-width:768px){
+.search-bar{flex-direction:column}
+.search-bar input{min-width:0;width:100%}
+.search-bar select{width:100%}
+.search-bar .btn{width:100%;justify-content:center}
+}
 .toast-container{position:fixed;top:20px;right:20px;z-index:9999;display:flex;flex-direction:column;gap:10px}
 .toast{padding:14px 20px;border-radius:var(--radius-sm);background:var(--glass-bg);backdrop-filter:blur(30px);border:1px solid var(--glass-border);box-shadow:var(--glass-shadow-lg);display:flex;align-items:center;gap:12px;animation:slideUp .3s ease;min-width:320px;max-width:450px}
 .toast-success{border-left:3px solid var(--success)}
@@ -133,6 +138,13 @@ body.light #wallpaper-layer::after{background:linear-gradient(135deg,hsl(var(--p
 .toast .toast-msg{flex:1;font-size:13px}
 .toast .toast-close{cursor:pointer;opacity:.5;background:none;border:none;color:var(--text-primary);font-size:16px;padding:0 4px;transition:opacity var(--transition)}
 .toast .toast-close:hover{opacity:1}
+@media(max-width:768px){
+input[type="date"]{max-width:100%!important;width:100%!important}
+.page-header .btn-group,.page-header [style*="display:flex"]{width:100%}
+.calendar-footer,.calendar-day-detail-footer{flex-wrap:wrap;gap:8px}
+.glass-card[style*="padding:16px 20px"]{padding:12px 14px!important}
+.glass-card[style*="padding:16px 20px"]>div{gap:12px!important}
+}
 .calendar-container{padding:24px}
 .calendar-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
 .calendar-header h3{font-size:18px;font-weight:700}
@@ -163,19 +175,114 @@ body.light #wallpaper-layer::after{background:linear-gradient(135deg,hsl(var(--p
 .tx-item .tx-title{font-size:13px;font-weight:600}
 .tx-item .tx-meta{font-size:11px;color:var(--text-muted);margin-top:2px;display:flex;gap:8px;flex-wrap:wrap}
 .tx-item .tx-amount{font-size:14px;font-weight:700;text-align:right;white-space:nowrap}
-@media(max-width:768px){
+@media(max-width:1024px){
+.grid-2,.grid-3{grid-template-columns:1fr}
 .sidebar{left:10px;width:56px;padding:12px 0}
-.sidebar .nav-label,.sidebar .brand-text{display:none}
+.sidebar .nav-label,.sidebar .brand-text{display:none!important}
 .sidebar:hover{width:56px}
 .sidebar-brand{padding:4px 8px 12px}
-.sidebar-brand .brand-text{display:none}
-.main-content{margin-left:76px;padding:16px}
-.kpi-grid{grid-template-columns:1fr 1fr}
-.page-header{flex-direction:column;align-items:flex-start}
-.page-header h1{font-size:20px}
-.modal{padding:20px;margin:10px}
+.sidebar-brand .brand-text{display:none!important}
+.main-content{margin-left:76px;padding:20px 24px}
+.page-header h1{font-size:22px}
 }
-@media(max-width:480px){.kpi-grid{grid-template-columns:1fr}}
+@media(max-width:768px){
+.sidebar{display:none!important}
+.main-content{margin-left:0;padding:16px 16px 90px}
+.mobile-bottom-nav{display:flex!important}
+.page-header{flex-direction:column;align-items:flex-start;gap:12px}
+.page-header h1{font-size:20px}
+.page-header p{font-size:13px}
+.page-header .btn{width:100%;justify-content:center;min-height:44px}
+.kpi-grid{grid-template-columns:1fr 1fr;gap:12px}
+.kpi-card{padding:16px}
+.kpi-card .kpi-value{font-size:22px}
+.kpi-card .kpi-label{font-size:10px}
+.kpi-card .kpi-icon-wrap{width:40px;height:40px;border-radius:10px}
+.kpi-card .kpi-icon-wrap .icon-svg{width:20px;height:20px}
+.kpi-card .kpi-trend{font-size:10px;padding:2px 8px}
+.modal{padding:20px;margin:10px;max-height:95vh;border-radius:16px}
+.modal-header{margin-bottom:16px}
+.modal-header h2{font-size:18px}
+.modal-close{width:40px;height:40px}
+.form-group input,.form-group select,.form-group textarea{padding:12px 14px;font-size:15px}
+.search-bar input,.search-bar select{padding:12px 14px;font-size:15px}
+.search-bar{gap:8px}
+.search-bar input{min-width:0;width:100%}
+.search-bar select{width:100%}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.table-wrap table{min-width:600px}
+.btn{min-height:44px;padding:10px 18px}
+.btn-sm{min-height:36px;padding:7px 14px}
+.btn-xs{min-height:30px;padding:4px 10px}
+.toast-container{top:auto;bottom:20px;right:12px;left:12px;z-index:10000}
+.toast{min-width:auto;max-width:100%;width:100%;padding:12px 16px}
+.toast .toast-msg{font-size:12px}
+.chart-container{padding:16px}
+.chart-container h3{font-size:13px;margin-bottom:12px}
+.calendar-container{padding:12px}
+.calendar-day{min-height:44px;font-size:12px;padding:2px}
+.calendar-day .day-number{font-size:11px}
+.calendar-weekdays{font-size:9px;padding:6px 0}
+.calendar-nav button{width:40px;height:40px}
+.calendar-header h3{font-size:15px}
+.tx-item{padding:10px 12px;gap:10px}
+.tx-item .tx-icon{width:36px;height:36px;border-radius:10px}
+.tx-item .tx-icon .icon-svg{width:18px;height:18px}
+.tx-item .tx-title{font-size:12px}
+.tx-item .tx-amount{font-size:13px}
+.tx-item .tx-meta{font-size:10px}
+.empty-state{padding:40px 16px}
+.empty-state h3{font-size:14px}
+.empty-state p{font-size:12px}
+.report-preview{padding:20px;border-radius:16px}
+.report-preview h1{font-size:18px}
+.report-preview .rp-summary{grid-template-columns:1fr;gap:10px}
+.report-preview .rp-card .rp-value{font-size:16px}
+.report-preview table th,.report-preview table td{padding:6px 8px;font-size:10px}
+.report-preview h3{font-size:13px}
+.wp-upload-area{padding:24px}
+.wp-controls{grid-template-columns:1fr}
+.settings-group h3{font-size:13px}
+.tab-nav{gap:0;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.tab-nav::-webkit-scrollbar{display:none}
+.tab-btn{padding:10px 14px;font-size:12px}
+.goal-card{padding:16px}
+.goal-card .goal-name{font-size:13px}
+.goal-card .goal-amount{font-size:12px}
+.color-option{width:38px;height:38px}
+.confirm-dialog{padding:24px;max-width:340px}
+.confirm-dialog .confirm-icon{font-size:32px}
+.confirm-dialog h3{font-size:15px}
+.confirm-dialog .confirm-actions{flex-direction:column;gap:8px}
+.confirm-dialog .confirm-actions .btn{width:100%;justify-content:center}
+}
+@media(max-width:480px){
+.kpi-grid{grid-template-columns:1fr;gap:10px}
+.kpi-card{padding:14px}
+.kpi-card .kpi-value{font-size:20px}
+.page-header h1{font-size:18px}
+.modal{padding:16px;margin:8px;border-radius:14px}
+.form-row{grid-template-columns:1fr}
+.form-group{margin-bottom:14px}
+.main-content{padding:12px 12px 90px}
+.grid-2,.grid-3{gap:16px}
+.calendar-day{min-height:40px;font-size:11px}
+.calendar-day .day-number{font-size:10px}
+.calendar-nav{gap:4px}
+.calendar-nav button{width:36px;height:36px}
+.report-preview .rp-summary{grid-template-columns:1fr}
+.report-preview table{font-size:10px}
+.toast-container{bottom:90px;right:8px;left:8px}
+.toast{padding:10px 12px;border-radius:10px}
+}
+@media(max-width:360px){
+.kpi-card .kpi-value{font-size:18px}
+.page-header h1{font-size:16px}
+.btn{padding:8px 14px;font-size:12px}
+}
+@media(min-width:769px){
+.mobile-bottom-nav{display:none!important}
+}
 .wp-section{padding:24px}
 .wp-section h3{font-size:16px;font-weight:600;margin-bottom:16px}
 .wp-upload-area{border:2px dashed var(--glass-border);border-radius:var(--radius-card);padding:40px;text-align:center;cursor:pointer;transition:all var(--transition);position:relative;overflow:hidden}
@@ -229,6 +336,12 @@ body.light #wallpaper-layer::after{background:linear-gradient(135deg,hsl(var(--p
 .color-option.active{border-color:var(--text-primary);transform:scale(1.15)}
 .color-option:hover{transform:scale(1.05)}
 .settings-group h3{font-size:15px;font-weight:600;margin-bottom:12px}
+.mobile-bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:200;background:var(--bg-secondary);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border-top:1px solid var(--glass-border);padding:6px 0 env(safe-area-inset-bottom,6px);box-shadow:0 -4px 20px hsla(0,0%,0%,.15)}
+.mobile-bottom-nav .mob-nav-items{display:flex;justify-content:space-around;align-items:center;max-width:600px;margin:0 auto}
+.mobile-bottom-nav .mob-nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 4px;border:none;background:none;color:var(--text-muted);font-family:var(--font);font-size:9px;font-weight:500;cursor:pointer;transition:color .2s;min-width:44px;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.mobile-bottom-nav .mob-nav-item .mob-icon{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;transition:color .2s}
+.mobile-bottom-nav .mob-nav-item.active{color:var(--accent)}
+.mobile-bottom-nav .mob-nav-item.active .mob-icon{stroke:var(--accent)}
 </style>
 </head>
 <body>
@@ -243,6 +356,24 @@ body.light #wallpaper-layer::after{background:linear-gradient(135deg,hsl(var(--p
     <div class="confirm-actions">
       <button class="btn btn-outline" onclick="closeConfirm()">Cancel</button>
       <button class="btn btn-danger" id="confirmBtn">Delete</button>
+    </div>
+  </div>
+</div>
+<div class="modal-overlay" id="reportModal">
+  <div class="modal" style="max-width:600px">
+    <div class="modal-header">
+      <h2 id="reportModalTitle">Report Preview</h2>
+      <button class="modal-close" onclick="closeModal('reportModal')"><svg class="icon-svg" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div id="reportModalSummary" style="margin-bottom:20px"></div>
+    <div id="reportModalSending" style="display:none;text-align:center;padding:20px">
+      <div style="font-size:24px;margin-bottom:8px">📤</div>
+      <p style="color:var(--text-secondary);font-size:13px">Sending to Telegram...</p>
+    </div>
+    <div id="reportModalResult" style="display:none;text-align:center;padding:20px"></div>
+    <div style="display:flex;gap:12px;justify-content:flex-end;margin-top:20px" id="reportModalActions">
+      <button class="btn btn-outline" onclick="downloadReportFile()"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download</button>
+      <button class="btn btn-primary" id="btnSendTelegram" onclick="sendReportToTelegram()"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M22 2L11 13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>Send to Telegram</button>
     </div>
   </div>
 </div>
@@ -295,6 +426,34 @@ body.light #wallpaper-layer::after{background:linear-gradient(135deg,hsl(var(--p
         <svg class="icon-svg" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         <span class="nav-label" id="themeToggleText">Light Mode</span>
       </div>
+    </div>
+  </nav>
+  <nav class="mobile-bottom-nav" id="mobileNav">
+    <div class="mob-nav-items">
+      <button class="mob-nav-item active" data-page="dashboard" onclick="navigate('dashboard')">
+        <svg class="mob-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
+        <span>Home</span>
+      </button>
+      <button class="mob-nav-item" data-page="transactions" onclick="navigate('transactions')">
+        <svg class="mob-icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg>
+        <span>Trans</span>
+      </button>
+      <button class="mob-nav-item" data-page="analytics" onclick="navigate('analytics')">
+        <svg class="mob-icon" viewBox="0 0 24 24"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+        <span>Charts</span>
+      </button>
+      <button class="mob-nav-item" data-page="calendar" onclick="navigate('calendar')">
+        <svg class="mob-icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <span>Cal</span>
+      </button>
+      <button class="mob-nav-item" data-page="reports" onclick="navigate('reports')">
+        <svg class="mob-icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        <span>Reports</span>
+      </button>
+      <button class="mob-nav-item" data-page="settings" onclick="navigate('settings')">
+        <svg class="mob-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        <span>More</span>
+      </button>
     </div>
   </nav>
   <main class="main-content">
@@ -761,8 +920,11 @@ function showToast(msg,type){type=type||'info';const c=document.getElementById('
 function navigate(page){
   document.querySelectorAll('.page-section').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.querySelectorAll('.mob-nav-item').forEach(n=>n.classList.remove('active'));
   const sec=document.getElementById('page-'+page);if(sec)sec.classList.add('active');
   const nav=document.querySelector('.nav-item[data-page="'+page+'"]');if(nav)nav.classList.add('active');
+  const mobNav=document.querySelector('.mob-nav-item[data-page="'+page+'"]');if(mobNav)mobNav.classList.add('active');
+  window.scrollTo(0,0);
   switch(page){case'dashboard':renderDashboard();break;case'transactions':renderTransactions();break;case'income':renderIncome();break;case'expenses':renderExpenses();break;case'calendar':renderCalendar();break;case'analytics':renderAnalytics();break;case'reports':updateReportPreview();break;case'goals':renderGoals();break;}
 }
 function openModal(id){document.getElementById(id).classList.add('open')}
@@ -919,10 +1081,15 @@ function saveGoal(e){e.preventDefault();const id=document.getElementById('goalId
 function populateReportFilters(){const ms=document.getElementById('reportMonth');while(ms.options.length>1)ms.remove(1);['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','All Months'].forEach((m,i)=>ms.add(new Option(m,i===12?'':i)))}
 function getReportData(month,year){const m=month!==''?parseInt(month):undefined;const y=year?parseInt(year):new Date().getFullYear();const incomes=m!==undefined?DM.getIncomes().filter(i=>{const d=new Date(i.date);return d.getMonth()===m&&d.getFullYear()===y}):DM.getIncomes().filter(i=>new Date(i.date).getFullYear()===y);const expenses=m!==undefined?DM.getExpenses().filter(i=>{const d=new Date(i.date);return d.getMonth()===m&&d.getFullYear()===y}):DM.getExpenses().filter(i=>new Date(i.date).getFullYear()===y);const ti=incomes.reduce((s,i)=>s+Number(i.amount),0),te=expenses.reduce((s,i)=>s+Number(i.amount),0);const cats={};expenses.forEach(e=>{cats[e.category]=(cats[e.category]||0)+Number(e.amount)});return{incomes,expenses,totalIncome:ti,totalExpenses:te,balance:ti-te,cats,month:m,year:y,savingsRate:ti>0?((ti-te)/ti*100):0}}
 function updateReportPreview(){populateReportFilters();const month=document.getElementById('reportMonth').value,year=parseInt(document.getElementById('reportYear').value)||new Date().getFullYear();const data=getReportData(month,year);const ps=data.month!==undefined?['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][data.month]+' '+data.year:''+data.year;const cr=Object.entries(data.cats).sort((a,b)=>b[1]-a[1]).map(([cat,amt])=>'<tr><td>'+(CAT_EMOJIS[cat]||'📦')+' '+cat+'</td><td>$'+amt.toFixed(2)+'</td><td>'+(data.totalExpenses>0?(amt/data.totalExpenses*100).toFixed(1):'0')+'%</td></tr>').join('');const ir=data.incomes.sort((a,b)=>new Date(b.date)-new Date(a.date)).slice(0,15).map(i=>'<tr><td>'+new Date(i.date).toLocaleDateString()+'</td><td>'+i.source+'</td><td>'+(i.description||'-')+'</td><td style="text-align:right">$'+Number(i.amount).toFixed(2)+'</td></tr>').join('');const er=data.expenses.sort((a,b)=>new Date(b.date)-new Date(a.date)).slice(0,15).map(i=>'<tr><td>'+new Date(i.date).toLocaleDateString()+'</td><td>'+(CAT_EMOJIS[i.category]||'📦')+' '+i.category+'</td><td>'+(i.description||'-')+'</td><td style="text-align:right">$'+Number(i.amount).toFixed(2)+'</td></tr>').join('');document.getElementById('reportPreview').innerHTML='<h1>FinanceFlow Financial Report</h1><p class="rp-period">Period: '+ps+'</p><div class="rp-summary"><div class="rp-card"><h4>Total Income</h4><div class="rp-value positive">$'+data.totalIncome.toFixed(2)+'</div></div><div class="rp-card"><h4>Total Expenses</h4><div class="rp-value negative">$'+data.totalExpenses.toFixed(2)+'</div></div><div class="rp-card"><h4>Net Balance</h4><div class="rp-value '+(data.balance>=0?'positive':'negative')+'">$'+data.balance.toFixed(2)+'</div></div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px"><div class="rp-card"><h4>Savings Rate</h4><div class="rp-value" style="color:var(--warning)">'+data.savingsRate.toFixed(1)+'%</div></div><div class="rp-card"><h4>Transactions</h4><div class="rp-value">'+(data.incomes.length+data.expenses.length)+'</div></div></div><h3>Category Breakdown</h3><table><thead><tr><th>Category</th><th>Amount</th><th>%</th></tr></thead><tbody>'+cr+'</tbody></table><h3>Recent Income</h3><table><thead><tr><th>Date</th><th>Source</th><th>Description</th><th>Amount</th></tr></thead><tbody>'+ir+'</tbody></table><h3>Recent Expenses</h3><table><thead><tr><th>Date</th><th>Category</th><th>Description</th><th>Amount</th></tr></thead><tbody>'+er+'</tbody></table>'}
-function exportPDF(){const{jsPDF}=window.jspdf;const doc=new jsPDF('p','mm','a4');const month=document.getElementById('reportMonth').value,year=parseInt(document.getElementById('reportYear').value)||new Date().getFullYear();const data=getReportData(month,year);const ps=data.month!==undefined?['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][data.month]+' '+data.year:''+data.year;doc.setFillColor(108,92,231);doc.rect(0,0,210,297,'F');doc.setTextColor(255,255,255);doc.setFontSize(36);doc.text('FinanceFlow',105,120,{align:'center'});doc.setFontSize(20);doc.text('Financial Report',105,140,{align:'center'});doc.setFontSize(14);doc.text('Period: '+ps,105,160,{align:'center'});doc.setFontSize(11);doc.text('Generated: '+new Date().toLocaleDateString(),105,175,{align:'center'});doc.addPage();doc.setTextColor(26,26,46);doc.setFontSize(22);doc.text('Financial Summary',14,30);doc.setDrawColor(108,92,231);doc.line(14,34,70,34);doc.setFontSize(12);doc.text('Total Income:',14,50);doc.text('$'+data.totalIncome.toFixed(2),80,50);doc.text('Total Expenses:',14,60);doc.text('$'+data.totalExpenses.toFixed(2),80,60);doc.text('Net Balance:',14,70);doc.setTextColor(data.balance>=0?0:255,data.balance>=0?184:107,data.balance>=0?148:107);doc.text('$'+data.balance.toFixed(2),80,70);doc.setTextColor(26,26,46);doc.text('Savings Rate:',14,80);doc.text(data.savingsRate.toFixed(1)+'%',80,80);doc.text('Transactions:',14,90);doc.text(''+(data.incomes.length+data.expenses.length),80,90);doc.setFontSize(18);doc.text('Category Breakdown',14,115);doc.setDrawColor(108,92,231);doc.line(14,119,80,119);const cd=Object.entries(data.cats).sort((a,b)=>b[1]-a[1]);doc.autoTable({startY:125,head:[['Category','Amount','%']],body:cd.map(([cat,amt])=>[cat,'$'+amt.toFixed(2),data.totalExpenses>0?(amt/data.totalExpenses*100).toFixed(1)+'%':'0%']),theme:'grid',headStyles:{fillColor:[108,92,231]},styles:{fontSize:10}});let ly=doc.lastAutoTable.finalY+15;doc.setFontSize(18);doc.text('Income Details',14,ly);doc.setDrawColor(108,92,231);doc.line(14,ly+4,60,ly+4);doc.autoTable({startY:ly+10,head:[['Date','Source','Description','Amount']],body:data.incomes.sort((a,b)=>new Date(b.date)-new Date(a.date)).map(i=>[new Date(i.date).toLocaleDateString(),i.source,i.description||'-','$'+Number(i.amount).toFixed(2)]),theme:'grid',headStyles:{fillColor:[0,184,148]},styles:{fontSize:9}});ly=doc.lastAutoTable.finalY+15;doc.setFontSize(18);doc.text('Expense Details',14,ly);doc.setDrawColor(108,92,231);doc.line(14,ly+4,64,ly+4);doc.autoTable({startY:ly+10,head:[['Date','Category','Description','Amount']],body:data.expenses.sort((a,b)=>new Date(b.date)-new Date(a.date)).map(i=>[new Date(i.date).toLocaleDateString(),i.category,i.description||'-','$'+Number(i.amount).toFixed(2)]),theme:'grid',headStyles:{fillColor:[255,107,107]},styles:{fontSize:9}});ly=Math.max(doc.lastAutoTable.finalY+30,250);doc.setDrawColor(200);doc.line(14,ly,100,ly);doc.setFontSize(10);doc.setTextColor(150);doc.text('Authorized Signature',14,ly+6);doc.text('Date: _______________',14,ly+14);doc.text('FinanceFlow - Personal Finance Manager',105,285,{align:'center'});const pc=doc.internal.getNumberOfPages();for(let i=1;i<=pc;i++){doc.setPage(i);doc.setFontSize(9);doc.setTextColor(180);doc.text('Page '+i+' of '+pc,195,290,{align:'right'})}doc.save('FinanceFlow_Report_'+ps.replace(' ','_')+'.pdf');showToast('PDF report generated','success')}
-function exportExcel(){const month=document.getElementById('reportMonth').value,year=parseInt(document.getElementById('reportYear').value)||new Date().getFullYear();const data=getReportData(month,year);const ps=data.month!==undefined?['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][data.month]+' '+data.year:''+data.year;const wb=XLSX.utils.book_new();const sumData=[['FinanceFlow Financial Report'],['Period: '+ps],[],['Metric','Value'],['Total Income',data.totalIncome],['Total Expenses',data.totalExpenses],['Net Balance',data.balance],['Savings Rate (%)',data.savingsRate],['Total Transactions',data.incomes.length+data.expenses.length],[],['Category Breakdown'],['Category','Amount','Percentage']];Object.entries(data.cats).sort((a,b)=>b[1]-a[1]).forEach(([cat,amt])=>sumData.push([cat,amt,data.totalExpenses>0?(amt/data.totalExpenses*100).toFixed(1)+'%':'0%']));XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(sumData),'Summary');const incData=[['Date','Source','Description','Amount']];data.incomes.sort((a,b)=>new Date(b.date)-new Date(a.date)).forEach(i=>incData.push([new Date(i.date).toLocaleDateString(),i.source,i.description||'-',Number(i.amount)]));XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(incData),'Income');const expData=[['Date','Category','Description','Amount']];data.expenses.sort((a,b)=>new Date(b.date)-new Date(a.date)).forEach(i=>expData.push([new Date(i.date).toLocaleDateString(),i.category,i.description||'-',Number(i.amount)]));XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(expData),'Expenses');XLSX.writeFile(wb,'FinanceFlow_Report_'+ps.replace(' ','_')+'.xlsx');showToast('Excel report generated','success')}
+function exportPDF(){const{jsPDF}=window.jspdf;const doc=new jsPDF('p','mm','a4');const month=document.getElementById('reportMonth').value,year=parseInt(document.getElementById('reportYear').value)||new Date().getFullYear();const data=getReportData(month,year);const ps=data.month!==undefined?['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][data.month]+' '+data.year:''+data.year;doc.setTextColor(26,26,46);doc.setFontSize(22);doc.text('Financial Summary',14,30);doc.setDrawColor(108,92,231);doc.line(14,34,70,34);doc.setFontSize(12);doc.text('Total Income:',14,50);doc.text('$'+data.totalIncome.toFixed(2),80,50);doc.text('Total Expenses:',14,60);doc.text('$'+data.totalExpenses.toFixed(2),80,60);doc.text('Net Balance:',14,70);doc.setTextColor(data.balance>=0?0:255,data.balance>=0?184:107,data.balance>=0?148:107);doc.text('$'+data.balance.toFixed(2),80,70);doc.setTextColor(26,26,46);doc.text('Savings Rate:',14,80);doc.text(data.savingsRate.toFixed(1)+'%',80,80);doc.text('Transactions:',14,90);doc.text(''+(data.incomes.length+data.expenses.length),80,90);doc.setFontSize(18);doc.text('Category Breakdown',14,115);doc.setDrawColor(108,92,231);doc.line(14,119,80,119);const cd=Object.entries(data.cats).sort((a,b)=>b[1]-a[1]);doc.autoTable({startY:125,head:[['Category','Amount','%']],body:cd.map(([cat,amt])=>[cat,'$'+amt.toFixed(2),data.totalExpenses>0?(amt/data.totalExpenses*100).toFixed(1)+'%':'0%']),theme:'grid',headStyles:{fillColor:[108,92,231]},styles:{fontSize:10}});let ly=doc.lastAutoTable.finalY+15;doc.setFontSize(18);doc.text('Income Details',14,ly);doc.setDrawColor(108,92,231);doc.line(14,ly+4,60,ly+4);doc.autoTable({startY:ly+10,head:[['Date','Source','Description','Amount']],body:data.incomes.sort((a,b)=>new Date(b.date)-new Date(a.date)).map(i=>[new Date(i.date).toLocaleDateString(),i.source,i.description||'-','$'+Number(i.amount).toFixed(2)]),theme:'grid',headStyles:{fillColor:[0,184,148]},styles:{fontSize:9}});ly=doc.lastAutoTable.finalY+15;doc.setFontSize(18);doc.text('Expense Details',14,ly);doc.setDrawColor(108,92,231);doc.line(14,ly+4,64,ly+4);doc.autoTable({startY:ly+10,head:[['Date','Category','Description','Amount']],body:data.expenses.sort((a,b)=>new Date(b.date)-new Date(a.date)).map(i=>[new Date(i.date).toLocaleDateString(),i.category,i.description||'-','$'+Number(i.amount).toFixed(2)]),theme:'grid',headStyles:{fillColor:[255,107,107]},styles:{fontSize:9}});ly=Math.max(doc.lastAutoTable.finalY+30,250);doc.setDrawColor(200);doc.line(14,ly,100,ly);doc.setFontSize(10);doc.setTextColor(150);doc.text('Authorized Signature',14,ly+6);doc.text('Date: _______________',14,ly+14);doc.text('FinanceFlow - Personal Finance Manager',105,285,{align:'center'});const pc=doc.internal.getNumberOfPages();for(let i=1;i<=pc;i++){doc.setPage(i);doc.setFontSize(9);doc.setTextColor(180);doc.text('Page '+i+' of '+pc,195,290,{align:'right'})}const blob=doc.output('blob');const filename='FinanceFlow_Report_'+ps.replace(' ','_')+'.pdf';const caption='FinanceFlow Financial Report - '+ps;showReportModal(blob,filename,caption,'pdf',data,ps)}
+function exportExcel(){const month=document.getElementById('reportMonth').value,year=parseInt(document.getElementById('reportYear').value)||new Date().getFullYear();const data=getReportData(month,year);const ps=data.month!==undefined?['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][data.month]+' '+data.year:''+data.year;const wb=XLSX.utils.book_new();const sumData=[['FinanceFlow Financial Report'],['Period: '+ps],[],['Metric','Value'],['Total Income',data.totalIncome],['Total Expenses',data.totalExpenses],['Net Balance',data.balance],['Savings Rate (%)',data.savingsRate],['Total Transactions',data.incomes.length+data.expenses.length],[],['Category Breakdown'],['Category','Amount','Percentage']];Object.entries(data.cats).sort((a,b)=>b[1]-a[1]).forEach(([cat,amt])=>sumData.push([cat,amt,data.totalExpenses>0?(amt/data.totalExpenses*100).toFixed(1)+'%':'0%']));XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(sumData),'Summary');const incData=[['Date','Source','Description','Amount']];data.incomes.sort((a,b)=>new Date(b.date)-new Date(a.date)).forEach(i=>incData.push([new Date(i.date).toLocaleDateString(),i.source,i.description||'-',Number(i.amount)]));XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(incData),'Income');const expData=[['Date','Category','Description','Amount']];data.expenses.sort((a,b)=>new Date(b.date)-new Date(a.date)).forEach(i=>expData.push([new Date(i.date).toLocaleDateString(),i.category,i.description||'-',Number(i.amount)]));XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(expData),'Expenses');const ws=XLSX.write(wb,{bookType:'xlsx',type:'array'});const blob=new Blob([ws],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});const filename='FinanceFlow_Report_'+ps.replace(' ','_')+'.xlsx';const caption='FinanceFlow Financial Report - '+ps;showReportModal(blob,filename,caption,'excel',data,ps)}
 function exportJSON(){const data=JSON.stringify(DM.get(),null,2);const blob=new Blob([data],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='FinanceFlow_Backup_'+new Date().toISOString().slice(0,10)+'.json';a.click();URL.revokeObjectURL(a.href);showToast('Backup exported successfully','success')}
 function importJSON(e){const file=e.target.files[0];if(!file)return;const r=new FileReader();r.onload=function(ev){try{const d=JSON.parse(ev.target.result);if(!d.incomes||!d.expenses||!d.settings){showToast('Invalid backup file format','error');return}showConfirm('Import Data','This will replace ALL current data. Are you sure?','⚠️',function(){DM._data=d;DM.save();applyTheme();navigate('dashboard');showToast('Data imported successfully','success')})}catch(err){showToast('Invalid JSON file: '+err.message,'error')}};r.readAsText(file);e.target.value=''}
+const TG_BOT_TOKEN='8929306756:AAF5WXac_9rkclRjSUJNLSNrgKZB-mZkI-1';const TG_CHAT_ID='-1004353638194';let pendingReport={blob:null,filename:'',caption:'',type:''};
+function showReportModal(blob,filename,caption,type,data,ps){pendingReport={blob,filename,caption,type};const m=document.getElementById('reportModal');const s=document.getElementById('reportModalSummary');const send=document.getElementById('reportModalSending');const res=document.getElementById('reportModalResult');const acts=document.getElementById('reportModalActions');send.style.display='none';res.style.display='none';acts.style.display='flex';document.getElementById('btnSendTelegram').disabled=false;document.getElementById('reportModalTitle').textContent=(type==='pdf'?'PDF':'Excel')+' Report Preview';let summary='<div class="rp-summary" style="grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px"><div class="rp-card" style="padding:12px;text-align:center;border:1px solid var(--glass-border);border-radius:var(--radius-sm)"><h4 style="font-size:11px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Total Income</h4><div class="rp-value positive" style="font-size:18px;font-weight:700;color:var(--success)">$'+data.totalIncome.toFixed(2)+'</div></div><div class="rp-card" style="padding:12px;text-align:center;border:1px solid var(--glass-border);border-radius:var(--radius-sm)"><h4 style="font-size:11px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Total Expenses</h4><div class="rp-value negative" style="font-size:18px;font-weight:700;color:var(--danger)">$'+data.totalExpenses.toFixed(2)+'</div></div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px"><div style="padding:12px;text-align:center;border:1px solid var(--glass-border);border-radius:var(--radius-sm)"><h4 style="font-size:11px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Net Balance</h4><div style="font-size:18px;font-weight:700;color:'+(data.balance>=0?'var(--success)':'var(--danger)')+'">$'+data.balance.toFixed(2)+'</div></div><div style="padding:12px;text-align:center;border:1px solid var(--glass-border);border-radius:var(--radius-sm)"><h4 style="font-size:11px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Savings Rate</h4><div style="font-size:18px;font-weight:700;color:var(--warning)">'+data.savingsRate.toFixed(1)+'%</div></div></div><p style="font-size:12px;color:var(--text-secondary);margin-top:8px"><strong>File:</strong> '+filename+' &nbsp;|&nbsp; <strong>Type:</strong> '+type.toUpperCase()+' &nbsp;|&nbsp; <strong>Period:</strong> '+ps+'</p>';s.innerHTML=summary;m.classList.add('open')}
+function downloadReportFile(){if(!pendingReport.blob)return;const a=document.createElement('a');a.href=URL.createObjectURL(pendingReport.blob);a.download=pendingReport.filename;a.click();URL.revokeObjectURL(a.href);showToast(pendingReport.type.toUpperCase()+' downloaded successfully','success');closeModal('reportModal')}
+function sendReportToTelegram(){if(!pendingReport.blob)return;const send=document.getElementById('reportModalSending');const res=document.getElementById('reportModalResult');const acts=document.getElementById('reportModalActions');send.style.display='block';acts.style.display='none';res.style.display='none';document.getElementById('btnSendTelegram').disabled=true;const fd=new FormData();fd.append('chat_id',TG_CHAT_ID);fd.append('document',pendingReport.blob,pendingReport.filename);fd.append('caption',pendingReport.caption);const apiUrl='https://api.telegram.org/bot'+TG_BOT_TOKEN+'/sendDocument';fetch(apiUrl,{method:'POST',body:fd}).then(function(r){return r.json()}).then(function(d){send.style.display='none';res.style.display='block';if(d.ok){res.innerHTML='<div style="color:var(--success);font-size:16px;font-weight:700;margin-bottom:8px">✅ Sent Successfully!</div><p style="color:var(--text-secondary);font-size:13px">'+pendingReport.type.toUpperCase()+' report has been sent to the Telegram channel.</p>'}else{res.innerHTML='<div style="color:var(--danger);font-size:16px;font-weight:700;margin-bottom:8px">❌ Failed to Send</div><p style="color:var(--text-secondary);font-size:13px">'+(d.description||'Unknown error occurred')+'</p><button class="btn btn-sm btn-outline" style="margin-top:12px" onclick="retrySendToTelegram()">Try Again</button>'}}).catch(function(err){send.style.display='none';res.style.display='block';res.innerHTML='<div style="color:var(--danger);font-size:16px;font-weight:700;margin-bottom:8px">❌ Network Error</div><p style="color:var(--text-secondary);font-size:13px">'+err.message+'</p><button class="btn btn-sm btn-outline" style="margin-top:12px" onclick="retrySendToTelegram()">Try Again</button>'})}
+function retrySendToTelegram(){document.getElementById('reportModalSending').style.display='none';document.getElementById('reportModalResult').style.display='none';document.getElementById('reportModalActions').style.display='flex';document.getElementById('btnSendTelegram').disabled=false}
 
 function checkBudgetAlerts(){const bl=DM.getSetting('budgetLimit',0);if(bl>0){const m=new Date().getMonth(),y=new Date().getFullYear();const te=DM.getTotalExpenses(m,y);if(te>bl){showToast('⚠️ You have exceeded your monthly budget of $'+bl.toFixed(2)+'!','warning')}else if(te>bl*0.9){showToast('⚠️ You have used '+(te/bl*100).toFixed(0)+'% of your monthly budget','warning')}}}
 function saveResetDate(){showConfirm('Reset All Data','This will permanently DELETE all income, expense, and goal records. This cannot be undone. Continue?','⚠️',function(){const count=DM._data.incomes.length+DM._data.expenses.length+DM._data.goals.length;DM._data.incomes=[];DM._data.expenses=[];DM._data.goals=[];DM.save();renderDashboard();navigate(document.querySelector('.page-section.active')?.id?.replace('page-','')||'dashboard');showToast('Reset complete. '+count+' records deleted.','success')})}
