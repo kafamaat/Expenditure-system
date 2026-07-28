@@ -556,8 +556,8 @@ input[type="date"]{max-width:100%!important;width:100%!important}
         <div class="search-bar">
           <input type="text" id="transactionSearch" placeholder="Search transactions..." oninput="renderTransactions()">
           <select id="transactionTypeFilter" onchange="renderTransactions()"><option value="">All Types</option><option value="income">Income</option><option value="expense">Expenses</option></select>
-          <select id="transactionMonthFilter" onchange="renderTransactions()"><option value="">Current Month</option></select>
-          <select id="transactionYearFilter" onchange="renderTransactions()"><option value="">Current Year</option></select>
+          <select id="transactionMonthFilter" onchange="renderTransactions()"><option value="all">All Months</option></select>
+          <select id="transactionYearFilter" onchange="renderTransactions()"><option value="all">All Years</option></select>
           <input type="date" id="transactionDateFrom" onchange="renderTransactions()" style="max-width:150px">
           <input type="date" id="transactionDateTo" onchange="renderTransactions()" style="max-width:150px">
         </div>
@@ -1042,7 +1042,7 @@ function navigate(page){
   const nav=document.querySelector('.nav-item[data-page="'+page+'"]');if(nav)nav.classList.add('active');
   const mobNav=document.querySelector('.mob-nav-item[data-page="'+page+'"]');if(mobNav)mobNav.classList.add('active');
   window.scrollTo(0,0);
-  switch(page){case'dashboard':renderDashboard();break;case'transactions':renderTransactions();break;case'income':renderIncome();break;case'expenses':renderExpenses();break;case'calendar':renderCalendar();break;case'analytics':renderAnalytics();break;case'reports':updateReportPreview();break;case'goals':renderGoals();break;}
+  switch(page){case'dashboard':renderDashboard();break;case'transactions':populateTransactionFilters();renderTransactions();break;case'income':renderIncome();break;case'expenses':renderExpenses();break;case'calendar':renderCalendar();break;case'analytics':renderAnalytics();break;case'reports':updateReportPreview();break;case'goals':renderGoals();break;}
 }
 function openModal(id){document.getElementById(id).classList.add('open')}
 function closeModal(id){document.getElementById(id).classList.remove('open')}
@@ -1135,13 +1135,13 @@ function editExpense(id){const d=DM.getExpense(id);if(d)openExpenseModal(d)}
 function deleteExpense(id){showConfirm('Delete Expense','Delete this expense record?','⚠️',function(){DM.deleteExpense(id);renderExpenses();showToast('Expense deleted','success')})}
 function saveExpense(e){e.preventDefault();const id=document.getElementById('expenseId').value;const data={date:document.getElementById('expenseDate').value,category:document.getElementById('expenseCategory').value,amount:parseFloat(document.getElementById('expenseAmount').value)||0,description:document.getElementById('expenseDescription').value,paymentMethod:document.getElementById('expensePaymentMethod').value,notes:document.getElementById('expenseNotes').value};const fi=document.getElementById('expenseAttachment');const ps=function(att){if(att)data.attachment=att;if(id){DM.updateExpense(id,data);showToast('Expense updated','success')}else{DM.addExpense(data);showToast('Expense added','success')}closeModal('expenseModal');renderExpenses();renderTransactions();checkBudgetAlerts()};if(fi.files&&fi.files[0]){const r=new FileReader();r.onload=function(ev){ps(ev.target.result)};r.readAsDataURL(fi.files[0])}else{ps(null)}}
 function renderTransactions(){
-  populateTransactionFilters();const s=document.getElementById('transactionSearch').value.toLowerCase();const tf=document.getElementById('transactionTypeFilter').value;const mf=document.getElementById('transactionMonthFilter').value;const yf=document.getElementById('transactionYearFilter').value;const dF=document.getElementById('transactionDateFrom').value;const dT=document.getElementById('transactionDateTo').value;
+  const s=document.getElementById('transactionSearch').value.toLowerCase();const tf=document.getElementById('transactionTypeFilter').value;const mf=document.getElementById('transactionMonthFilter').value;const yf=document.getElementById('transactionYearFilter').value;const dF=document.getElementById('transactionDateFrom').value;const dT=document.getElementById('transactionDateTo').value;
   const now=new Date();const curMonth=now.getMonth();const curYear=now.getFullYear();
   let all=[...DM.getIncomes().map(i=>({...i,_type:'income',_cat:i.source})),...DM.getExpenses().map(e=>({...e,_type:'expense',_cat:e.category}))];
   if(s)all=all.filter(r=>r._cat.toLowerCase().includes(s)||(r.description||'').toLowerCase().includes(s)||(r.notes||'').toLowerCase().includes(s));
   if(tf)all=all.filter(r=>r._type===tf);
-  all=all.filter(r=>new Date(r.date).getMonth()===(mf!==''?parseInt(mf):curMonth));
-  all=all.filter(r=>new Date(r.date).getFullYear()===(yf!==''?parseInt(yf):curYear));
+  if(mf!=='all')all=all.filter(r=>new Date(r.date).getMonth()===parseInt(mf));
+  if(yf!=='all')all=all.filter(r=>new Date(r.date).getFullYear()===parseInt(yf));
   if(dF)all=all.filter(r=>r.date>=dF);if(dT)all=all.filter(r=>r.date<=dT);
   const ti=all.filter(r=>r._type==='income').reduce((s,r)=>s+Number(r.amount),0);const te=all.filter(r=>r._type==='expense').reduce((s,r)=>s+Number(r.amount),0);
   document.getElementById('transTotalIncome').textContent='$'+ti.toFixed(2);document.getElementById('transTotalExpenses').textContent='$'+te.toFixed(2);
@@ -1155,11 +1155,12 @@ function renderTransactions(){
 }
 function populateTransactionFilters(){
   const ms=document.getElementById('transactionMonthFilter'),ys=document.getElementById('transactionYearFilter');
-  while(ms.options.length>1)ms.remove(1);while(ys.options.length>1)ys.remove(1);
-  ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'].forEach((m,i)=>ms.add(new Option(m,i)));
+  if(ms.dataset.init)return;ms.dataset.init='1';
+  ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'].forEach((m,i)=>ms.add(new Option(m,String(i))));
   const years=new Set();DM.getIncomes().forEach(i=>years.add(new Date(i.date).getFullYear()));DM.getExpenses().forEach(i=>years.add(new Date(i.date).getFullYear()));[...years].sort().forEach(y=>ys.add(new Option(y,y)));
-  if(ms.options.length<=1){const now=new Date();for(let i=0;i<12;i++)ms.add(new Option(['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][i],i));
-    if(!ms.value)ms.value=now.getMonth();if(!ys.value||ys.value===''){ys.add(new Option(now.getFullYear(),now.getFullYear()));ys.value=now.getFullYear()}}
+  const now=new Date();ms.value=String(now.getMonth());
+  const yearOpt=Array.from(ys.options).find(o=>o.value===String(now.getFullYear()));
+  if(yearOpt)ys.value=String(now.getFullYear());else if(ys.options.length>1)ys.value=ys.options[1].value;
 }
 let calMonth=new Date().getMonth(),calYear=new Date().getFullYear(),selCalDate=null,dragRec=null;
 function renderCalendar(){
