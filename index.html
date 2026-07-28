@@ -737,6 +737,17 @@ input[type="date"]{max-width:100%!important;width:100%!important}
               <div class="color-option" style="background:#e17055" onclick="setAccent('#e17055',this)"></div>
               <div class="color-option" style="background:#fd79a8" onclick="setAccent('#fd79a8',this)"></div>
               <div class="color-option" style="background:#fdcb6e" onclick="setAccent('#fdcb6e',this)"></div>
+              <div class="color-option" style="background:#000000;border:2px solid #555" onclick="setAccent('#000000',this)"></div>
+              <div class="color-option" style="background:#0D0863" onclick="setAccent('#0D0863',this)"></div>
+              <div class="color-option" style="background:#410047" onclick="setAccent('#410047',this)"></div>
+              <div class="color-option" style="background:#F26300" onclick="setAccent('#F26300',this)"></div>
+              <div class="color-option" style="background:#FF852E" onclick="setAccent('#FF852E',this)"></div>
+              <div class="color-option" style="background:#FFA05C" onclick="setAccent('#FFA05C',this)"></div>
+              <div class="color-option" style="background:#F15CFF" onclick="setAccent('#F15CFF',this)"></div>
+              <div class="color-option" style="background:#FC0092" onclick="setAccent('#FC0092',this)"></div>
+              <div class="color-option" style="background:#750044" onclick="setAccent('#750044',this)"></div>
+              <div class="color-option" style="background:#E7E7E7;border:2px solid #bbb" onclick="setAccent('#E7E7E7',this)"></div>
+              <div class="color-option" style="background:#FFFFFF;border:2px solid #999" onclick="setAccent('#FFFFFF',this)"></div>
             </div>
           </div>
         </div>
@@ -979,7 +990,7 @@ function applyTheme(){
 }
 function toggleTheme(){const c=DM.getSetting('theme','dark');DM.setSetting('theme',c==='dark'?'light':'dark');applyTheme();if(DM.getSetting('wallpaper','')){extractAndApplyTheme(DM.getSetting('wallpaper',''),DM.getSetting('theme','dark')==='light')}}
 function setThemeMode(m){DM.setSetting('theme',m);applyTheme();showToast('Switched to '+m+' mode','info');if(DM.getSetting('wallpaper','')){extractAndApplyTheme(DM.getSetting('wallpaper',''),m==='light')}}
-function setAccent(color,el){DM.setSetting('accent',color);applyTheme();document.querySelectorAll('.color-option').forEach(c=>c.classList.remove('active'));if(el)el.classList.add('active');showToast('Accent color updated','success')}
+function setAccent(color,el){DM.setSetting('accent',color);applyTheme();document.querySelectorAll('.color-option').forEach(c=>c.classList.remove('active'));if(el)el.classList.add('active')}
 const COLOR_THEMES={
   ocean:{name:'Ocean Blue',dark:{bg:'#B8C6FF',bg2:'#9AACFF',tx:'#1a1a2e',tx2:'#3a3a5c',txm:'#6a6a8e',glass:'rgba(255,255,255,.3)',glassB:'rgba(255,255,255,.45)',glassSh:'rgba(184,198,255,.3)',glassShL:'rgba(184,198,255,.4)',nav:'rgba(255,255,255,.25)',ph:228,ps:'100%',pl:'83%'},light:{bg:'#FFE6F8',bg2:'#FFD6EE',tx:'#1a1a2e',tx2:'#4a3a5c',txm:'#8a7a9e',glass:'rgba(255,255,255,.45)',glassB:'rgba(255,200,230,.5)',glassSh:'rgba(255,230,248,.3)',glassShL:'rgba(255,230,248,.4)',nav:'rgba(255,255,255,.6)',ph:330,ps:'100%',pl:'95%'}},
   emerald:{name:'Emerald',dark:{bg:'#B8E6D0',bg2:'#90D4B4',tx:'#0a2e1a',tx2:'#1c4a33',txm:'#4a7a60',glass:'rgba(255,255,255,.3)',glassB:'rgba(255,255,255,.45)',glassSh:'rgba(184,230,208,.3)',glassShL:'rgba(184,230,208,.4)',nav:'rgba(255,255,255,.25)',ph:152,ps:'70%',pl:'52%'},light:{bg:'#E8FFF0',bg2:'#D0FFE0',tx:'#0a2e1a',tx2:'#1c4a33',txm:'#5a8a6a',glass:'rgba(255,255,255,.45)',glassB:'rgba(200,255,220,.5)',glassSh:'rgba(232,255,240,.3)',glassShL:'rgba(232,255,240,.4)',nav:'rgba(255,255,255,.6)',ph:152,ps:'70%',pl:'92%'}},
@@ -997,7 +1008,7 @@ const COLOR_THEMES={
   blush:{name:'Deep Blush',dark:{bg:'#750044',bg2:'#5A0035',tx:'#FFB8E1',tx2:'#FC0092',txm:'#C0608A',glass:'rgba(255,184,225,.1)',glassB:'rgba(255,184,225,.15)',glassSh:'rgba(117,0,68,.5)',glassShL:'rgba(117,0,68,.6)',nav:'rgba(255,184,225,.08)',ph:328,ps:'100%',pl:'23%'},light:{bg:'#FCE8F2',bg2:'#F5D8E8',tx:'#3A0022',tx2:'#5A0038',txm:'#8A4060',glass:'rgba(255,255,255,.5)',glassB:'rgba(252,232,242,.5)',glassSh:'rgba(252,232,242,.4)',glassShL:'rgba(252,232,242,.5)',nav:'rgba(255,255,255,.65)',ph:328,ps:'50%',pl:'90%'}},
   silver:{name:'Silver',dark:{bg:'#E7E7E7',bg2:'#D0D0D0',tx:'#1a1a1a',tx2:'#3a3a3a',txm:'#6a6a6a',glass:'rgba(255,255,255,.35)',glassB:'rgba(255,255,255,.5)',glassSh:'rgba(231,231,231,.3)',glassShL:'rgba(231,231,231,.4)',nav:'rgba(255,255,255,.3)',ph:0,ps:'0%',pl:'90%'},light:{bg:'#FFFFFF',bg2:'#F8F8F8',tx:'#1a1a1a',tx2:'#4a4a4a',txm:'#8a8a8a',glass:'rgba(255,255,255,.6)',glassB:'rgba(200,200,200,.3)',glassSh:'rgba(255,255,255,.4)',glassShL:'rgba(255,255,255,.5)',nav:'rgba(255,255,255,.8)',ph:0,ps:'0%',pl:'100%'}}
 };
-function setThemeColor(key,el){const t=COLOR_THEMES[key];if(!t)return;DM.setSetting('colorTheme',key);applyTheme();document.querySelectorAll('.theme-color-option').forEach(function(c){c.classList.remove('active')});if(el)el.classList.add('active');showToast(t.name+' theme applied','success')}
+function setThemeColor(key,el){const t=COLOR_THEMES[key];if(!t)return;DM.setSetting('colorTheme',key);applyTheme();document.querySelectorAll('.theme-color-option').forEach(function(c){c.classList.remove('active')});if(el)el.classList.add('active')}
 function applyThemeColorVars(){const key=DM.getSetting('colorTheme','ocean');const mode=DM.getSetting('theme','dark');const t=COLOR_THEMES[key]||COLOR_THEMES.ocean;const c=t[mode]||t.dark;const r=document.documentElement.style;r.setProperty('--primary-h',c.ph);r.setProperty('--primary-s',c.ps);r.setProperty('--primary-l',c.pl);r.setProperty('--bg-primary',c.bg);r.setProperty('--bg-secondary',c.bg2);r.setProperty('--text-primary',c.tx);r.setProperty('--text-secondary',c.tx2);r.setProperty('--text-muted',c.txm);r.setProperty('--glass-bg',c.glass);r.setProperty('--glass-border',c.glassB);r.setProperty('--glass-shadow',c.glassSh);r.setProperty('--glass-shadow-lg',c.glassShL);r.setProperty('--nav-bg',c.nav)}
 function switchSettingsTab(tab){document.querySelectorAll('.settings-tab').forEach(t=>t.style.display='none');document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.getElementById('tab-'+tab).style.display='block';document.querySelector('.tab-btn[data-tab="'+tab+'"]').classList.add('active')}
 function saveBudgetLimit(){DM.setSetting('budgetLimit',Number(document.getElementById('budgetLimit').value)||0);DM.setSetting('savingsGoal',Number(document.getElementById('savingsGoal').value)||10);DM.setSetting('alertDays',Number(document.getElementById('alertDays').value)||3);showToast('Settings saved','success')}
